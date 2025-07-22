@@ -13,6 +13,14 @@ pipeline {
       }
     }
 
+    stage('Debug Shell') {
+      steps {
+        sh 'echo "Working directory: $(pwd)"'
+        sh 'ls -la'
+        sh 'git branch'
+      }
+    }
+
     stage('Build Docker Images') {
       steps {
         sh 'docker build -t $DOCKERHUB_USER/expense-backend ./backend'
