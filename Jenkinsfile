@@ -4,6 +4,7 @@ pipeline {
   environment {
     DOCKERHUB_USER = 'pranavv1251'
     DOCKERHUB_PASS = credentials('dockerhub-token') // Add in Jenkins
+    PATH = "/usr/local/bin:/usr/bin:/bin:$PATH"
   }
 
   stages {
