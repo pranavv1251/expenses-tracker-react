@@ -30,6 +30,7 @@ pipeline {
     stage('Debug Env') {
       steps {
         sh 'echo "Logging in as $DOCKERHUB_USER"'
+        sh 'echo "TOKEN LENGTH: ${#DOCKERHUB_PASS}"'
       }
     }
 
