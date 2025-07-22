@@ -27,6 +27,11 @@ pipeline {
         sh 'docker build -t $DOCKERHUB_USER/expense-frontend ./expenses'  // updated path
       }
     }
+    stage('Debug Env') {
+      steps {
+        sh 'echo "Logging in as $DOCKERHUB_USER"'
+      }
+    }
 
     stage('Docker Login') {
       steps {
