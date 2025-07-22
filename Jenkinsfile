@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Clone Repository') {
       steps {
-        git 'https://github.com/yourusername/expense-tracker.git'
+        git 'https://github.com/pranavv1251/expenses-tracker-react.git'
       }
     }
 
