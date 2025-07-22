@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     DOCKERHUB_USER = 'pranavv1251'
-    DOCKERHUB_PASS = credentials('dockerhub-token') // Add in Jenkins
+    DOCKERHUB_PASS = credentials('dockerhub-secret-token') // Add in Jenkins
     PATH = "/usr/local/bin:/usr/bin:/bin:$PATH"
   }
 
@@ -36,8 +36,13 @@ pipeline {
     }
 
     stage('Docker Login') {
+      // steps {
+      //   sh 'echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin'
+      // }
       steps {
-        sh 'echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin'
+        withCredentials([string(credentialsId: 'dockerhub-secret-token', variable: 'DOCKERHUB_PASS')]) {
+          sh 'echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin'
+        }
       }
     }
 
