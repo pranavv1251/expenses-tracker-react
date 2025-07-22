@@ -31,6 +31,7 @@ pipeline {
       steps {
         sh 'echo "Logging in as $DOCKERHUB_USER"'
         sh 'echo "TOKEN LENGTH: ${#DOCKERHUB_PASS}"'
+        echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin || echo "Login failed"
       }
     }
 
